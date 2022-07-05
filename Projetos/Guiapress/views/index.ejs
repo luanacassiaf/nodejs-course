@@ -1,0 +1,39 @@
+<%- include('partials/header.ejs') %>
+
+<body>
+    <%- include('partials/homenavbar.ejs') %>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Boas-vindas!</h1>
+            <p class="lead">Este é um blog simples, desenvolvido em Node.js</p>
+            <hr class="my-4">
+            <p>
+                Aqui temos o desenvolvimento de uma plataforma administrativa para cadastro, edição, leitura e deleção de artigos e suas categorias; 
+                além disso, a leitura possui uma apresentação em formato blog do que foi cadastrado neste site.
+                Este elemento que vos comunica se trata de um Jumbotron do framework Bootstrap.
+            </p>
+        </div>
+        <br>
+        <% articles.forEach(article => { %>
+            <div class="card-header">
+                <h3><%= article.title %></h3>
+            </div>
+            <div class="card-body">
+                <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+            </div>
+            <br>
+        <% }) %>
+
+        <div class="row">
+            <div class="col col-12">
+                <a style="float: right" href="/articles/page/2">Próximo</a>
+            </div>
+            <br>
+        </div>
+        <br>
+        
+    </div>
+</body>
+
+<%- include('partials/footer.ejs') %>
