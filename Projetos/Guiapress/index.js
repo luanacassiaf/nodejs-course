@@ -69,6 +69,21 @@ app.get("/", (req, res) => {
     })
 })
 
+// app.get("/", async(req, res) => {
+//     try {
+//         const articles = await Article.findAll({
+//             order: [
+//                 ['id', 'DESC']
+//             ],
+//             limit: 4
+//         })
+//         const categories = await Category.findAll()
+//         res.render("index", {articles: articles, categories: categories})
+//     } catch (error) {
+//         res.send(error)
+//     }
+// })
+
 app.get("/:slug", (req, res) => {
     var slug = req.params.slug
     Article.findOne({
