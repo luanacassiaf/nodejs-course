@@ -1,3 +1,10 @@
 # Node.js
+
+Curso Formação Node.js, realizado pela plataforma Udemy.
+
+### Projetos desenvolvidos  
+- GuiaPerguntas: plataforma de perguntas e respostas
+- Guiapress: blog com painel administrativo  
+
 > Curso disponível em:  
 https://www.udemy.com/course/formacao-nodejs/
