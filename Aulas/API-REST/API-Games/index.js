@@ -75,8 +75,30 @@ app.get("/game/:id", auth, (req, res) => {
         var id = parseInt(req.params.id)
         var game = mockDB.games.find(game => game.id == id)
         if(game != undefined) {
+            var hateoas = [
+                {
+                    href: 'http://localhost:8000/game/'+id,
+                    method: 'PUT',
+                    rel: 'update_game'
+                },
+                {
+                    href: 'http://localhost:8000/game/'+id,
+                    method: 'DELETE',
+                    rel: 'delete_game'
+                },
+                {
+                    href: 'http://localhost:8000/game/',
+                    method: 'POST',
+                    rel: 'create_game'
+                },
+                {
+                    href: 'http://localhost:8000/games/',
+                    method: 'GET',
+                    rel: 'get_all_games'
+                }
+            ]
             res.statusCode = 200
-            res.json(game)
+            res.json({game: game, _links: hateoas})
         } else {
             res.sendStatus(404)
         }
