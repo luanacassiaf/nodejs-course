@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+</head>
+<body>
+    <form method="POST" action="/form">
+        <input type="name" name="email" id="email" placeholder="E-mail" value="<%= email %>">
+        <%= emailError %>
+        <br><input type="text" name="nome" id="nome" placeholder="Nome" value="<%= nome %>">
+        <%= nomeError %>
+        <br><input type="number" name="idade" id="idade" placeholder="Idade" value="<%= idade %>">
+        <%= idadeError %>
+        <br><button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
