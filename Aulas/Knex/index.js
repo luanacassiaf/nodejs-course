@@ -2,13 +2,17 @@ var database = require('./database')
 
 var dados = [
     {
-        nome: "Pacman",
+        nome: "The Legend Of Zelda",
         preco: 29.90
     },
     {
-        nome: "Tetris",
-        preco: 28.59
-    }
+        nome: "Mario Bros",
+        preco: 28.99
+    },
+    {
+        nome: "Sonic the Hedgehog",
+        preco: 27.40
+    },
 ]
 
 function sql_insert() {
@@ -58,16 +62,16 @@ async function sql_raw() {
 
 async function sql_delete() {
     try {
-        var data = await database.delete().where({id: 8}).table("games")
-        console.log(data) // Quantidade de registros deletados
+        var res = await database.delete().where({id: 8}).table("games")
+        console.log(res)
     }catch(err) {
         console.log(err)
     }
 }
 
 async function sql_update() {
-    var data = await database.where({nome: "Pokémon Red"}).update({preco: 49.99}).table("games")
-    console.log(data) // Quantidade de registros atualizados
+    var res = await database.where({nome: "Pokémon Red"}).update({preco: 49.99}).table("games")
+    console.log(res)
 }
 
 async function sql_orderBy() {
@@ -75,4 +79,47 @@ async function sql_orderBy() {
     console.log(data)
 }
 
-sql_orderBy()
+// 1:1 e 1:N
+async function associated_insert() {
+    var res = await database.insert({nome: "Nintendo", game_id: 18}).table("estudios")
+    console.log(res)
+}
+
+// 1:N
+async function sql_innerJoin() {
+    var data = await database.select(["games.*", "estudios.nome as estudio_nome"]).table("games")
+        .innerJoin("estudios", "estudios.game_id", "games.id").where("estudios.nome", "Nintendo")
+    var estudio = {
+        nome: "Nintendo",
+        games: []
+    }
+    data.forEach(game => {
+        estudio.games.push({nome: game.nome})
+    })
+    console.log(estudio)
+}
+
+// N:N
+async function sql_innerJoins() {
+    var data = await database.select([
+            "games.nome as game_nome", 
+            "estudios.nome as estudio_nome"
+        ]).table("games_estudios")
+        .innerJoin("games", "games.id", "games_estudios.game_id")
+        .innerJoin("estudios", "estudios.id", "games_estudios.estudio_id")
+    console.log(data)
+}
+
+async function sql_transaction() {
+    try {
+        await database.transaction(async trans => {
+            await database.insert({nome: "Mojang"}).into("estudios")
+            await database.insert({nome: "Capcom"}).into("estudios")
+            await database.insert({nome: "Niantic"}).into("estudios")
+        })
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+sql_transaction()
