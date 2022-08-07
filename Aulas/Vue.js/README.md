@@ -1,7 +1,7 @@
 # Notas
 
 ### Data binding
-Data bindind é uma técnica geral que une duas fontes de dados/informações e as mantém em sincronia em um processo que estabelece uma conexão entre UI da aplicação e a logica de negocio.
+Data bindind é uma técnica geral que une duas fontes de dados/informações e as mantém em sincronia em um processo que estabelece uma conexão entre UI da aplicação e a lógica de negócio.
 
 #### Exemplos de uso em Vue.js
 
