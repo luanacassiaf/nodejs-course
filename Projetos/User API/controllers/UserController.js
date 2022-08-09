@@ -27,7 +27,7 @@ class UserController {
 
         if(email == undefined) {
             res.status(400)
-            res.json({err: "E-mail inválido."})
+            res.json({err: "Deve haver um e-mail."})
             return
         }
         if(name == undefined) {
