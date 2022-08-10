@@ -6,9 +6,10 @@ Curso Formação Node.js, realizado na plataforma Udemy.
 - GuiaPerguntas: plataforma de perguntas e respostas
 - Guiapress: blog com painel administrativo
 - Conversor de arquivos CSV para HTML e PDF
-- Pokédex com Vue.js; utilização do Axios para consumir dados do PokéAPI
-- User API: API REST, com utilização de Knex e JWT, para gerenciamento de usuários
-- Integração com User API: aplicação em Vue.js que integra as funcionalidades de User API
+- Pokédex: aplicação Vue.js que utiliza Axios para consumir dados do PokéAPI
+- User API: API REST com utilização de Knex e JWT para gerenciamento de usuários
+- Integração com User API: aplicação Vue.js que integra as funcionalidades de User API
+- Chat.io: chat desenvolvido com Socket.io
 
 > Curso disponível em:  
 https://www.udemy.com/course/formacao-nodejs/
