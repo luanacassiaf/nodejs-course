@@ -5,8 +5,7 @@ var PasswordToken = require("./PasswordToken")
 class User {
     async findAll() {
         try {
-            var result = await knex.select(["id", "email", "name", "role"]).table("users")
-            return result
+            return await knex.select(["id", "email", "name", "role"]).table("users")
         } catch(err) {
             console.log(err)
             return []

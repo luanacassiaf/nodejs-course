@@ -4,7 +4,7 @@ var secret = "7kGfd2Ha2b#$D^wuc%2M"
 
 module.exports = function(req, res, next) {
     const authToken = req.headers['authorization']
-
+    
     if(authToken != undefined) {
         const bearer = authToken.split(' ')
         var token = bearer[1]
@@ -21,7 +21,7 @@ module.exports = function(req, res, next) {
             
         } catch {
             res.status(403)
-            res.send("Você não está autenticado.")
+            res.send("Você não tem permissão de acesso.")
             return
         }
 

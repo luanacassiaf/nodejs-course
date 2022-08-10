@@ -2,6 +2,7 @@ var User = require("../models/User")
 var PasswordToken = require("../models/PasswordToken")
 var jwt = require("jsonwebtoken")
 var bcrypt = require("bcrypt")
+var validator = require('validator')
 
 var secret = "7kGfd2Ha2b#$D^wuc%2M"
 
@@ -25,19 +26,24 @@ class UserController {
     async create(req, res) {
         var{email, name, password} = req.body
 
-        if(email == undefined) {
+        if(name == undefined || name == '' || name == ' ') {
             res.status(400)
-            res.json({err: "Deve haver um e-mail."})
+            res.send("Deve haver um nome.")
             return
         }
-        if(name == undefined) {
+        if(email == undefined || email == '' || email == ' ') {
             res.status(400)
-            res.json({err: "Deve haver um nome."})
+            res.send("Deve haver um e-mail.")
             return
         }
-        if(password == undefined) {
+        if(!validator.isEmail(email)) {
             res.status(400)
-            res.json({err: "Deve haver uma senha."})
+            res.send("E-mail inválido.")
+            return
+        }
+        if(password == undefined || password == '' || password == ' ') {
+            res.status(400)
+            res.send("Deve haver uma senha.")
             return
         }
 
@@ -45,7 +51,7 @@ class UserController {
         
         if(emailExists) {
             res.status(406)
-            res.json({err: "O e-mail já está cadastrado."})
+            res.send("O e-mail já está cadastrado.")
             return
         }
 
@@ -56,6 +62,23 @@ class UserController {
     async edit(req, res) {
         var id = req.params.id
         var {name, role, email} = req.body
+
+        if(name == undefined || name == '' || name == ' ') {
+            res.status(400)
+            res.send("Deve haver um nome.")
+            return
+        }
+        if(email == undefined || email == '' || email == ' ') {
+            res.status(400)
+            res.send("Deve haver um e-mail.")
+            return
+        }
+        if(!validator.isEmail(email)) {
+            res.status(400)
+            res.send("E-mail inválido.")
+            return
+        }
+
         var result = await User.update(id, email, name, role)
         if(result != undefined) {
             if(result.status) {
