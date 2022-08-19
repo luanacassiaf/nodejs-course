@@ -1,4 +1,4 @@
-# Node.js
+# nodejs-course
 
 Curso Formação Node.js, realizado na plataforma Udemy.
 
